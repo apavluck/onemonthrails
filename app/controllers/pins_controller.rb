@@ -7,12 +7,13 @@ class PinsController < ApplicationController
   def show
   end
   def new
-    @pin = Pin.new
+    #this will allow me to include the user_id
+    @pin = current_user.pins.build
   end
   def edit
   end
   def create
-    @pin = Pin.new(pin_params)
+    @pin = current_user.pins.build(pin_params)
 
     respond_to do |format|
       if @pin.save
