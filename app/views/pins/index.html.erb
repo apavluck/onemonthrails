@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <h1>Listing pins</h1>
 
 <table class="table table-hover">
@@ -12,15 +13,17 @@
   </thead>
 
   <tbody>
-	  <!-- Creates embedded ruby loop -->
-    <% @pins.each do |pin| %>
-      <tr>
-        <!-- will show email if not null -->
-        <td><%= pin.user.email if pin.user %></td>
-        <td><%= pin.description %></td>
-        <td><%= link_to 'Show', pin %></td>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  <% @pins.each do |pin| %>
+	   <tr>
+	    <!-- Creates embedded ruby loop -->
+    	<% if pin.user == current_user %>
+	        <!-- will show email if not null -->
+	        <td><%= pin.user.email if pin.user %></td>
+	        <td><%= pin.description %></td>
+	        <!--<td><%= link_to 'Show', pin %></td>-->
+	        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
+	        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% end %>
       </tr>
     <% end %>
   </tbody>
@@ -29,3 +32,6 @@
 <br>
 
 <%= link_to 'New Pin', new_pin_path %>
+<% else %>
+<h1> You must be logged in to view your pins </h1>
+<% end %>
