@@ -18,9 +18,8 @@
 	    <!-- Creates embedded ruby loop -->
 		<!-- NOTE: No @pin.user because the pin is defined in the loop. With @pin you use the pin defined in the controller -->
     	<% if pin.user == current_user %>
-	        <!-- will show email if not null -->
 	        <td><%= image_tag pin.image.url(:thumb)  %></td>
-			<td><%= pin.description %></td>
+			<td><%= pin.user.email if pin.user %></td>
 	        <td><%= pin.description %></td>
 	        <td><%= link_to 'Show', pin %></td>
 	        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
