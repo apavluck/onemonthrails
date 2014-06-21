@@ -1,37 +1,37 @@
 <% if user_signed_in? %>
-<h1>Listing pins</h1>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
+	<h1>Listing pins</h1>
+	<table class="table table-hover">
+  	  <thead>
+    	<tr>
+	  <th>Image</th>
       <th>User ID</th>
       <th>Description</th>
       <th>Controls:</th>
       <th></th>
       <th></th>
-    </tr>
-  </thead>
+      </tr>
+  	  </thead>
 
-  <tbody>
+  	  <tbody>
 	  <% @pins.each do |pin| %>
-	   <tr>
+	   	<tr>
 	    <!-- Creates embedded ruby loop -->
+		<!-- NOTE: No @pin.user because the pin is defined in the loop. With @pin you use the pin defined in the controller -->
     	<% if pin.user == current_user %>
 	        <!-- will show email if not null -->
-	        <td><%= pin.user.email if pin.user %></td>
+	        <td><%= image_tag pin.image.url(:thumb)  %></td>
+			<td><%= pin.description %></td>
 	        <td><%= pin.description %></td>
-	        <!--<td><%= link_to 'Show', pin %></td>-->
+	        <td><%= link_to 'Show', pin %></td>
 	        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
 	        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		<% end %>
-      </tr>
+      	</tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Pin', new_pin_path %>
+  	</tbody>
+	</table>
+	<br>
+	<%= link_to 'New Pin', new_pin_path %>
 <% else %>
-<h1> You must be logged in to view your pins </h1>
+	<h2> You must be logged in to view your pins </h2>
 <% end %>
