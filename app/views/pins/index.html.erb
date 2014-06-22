@@ -1,16 +1,17 @@
 <div id="pins" class="transitions-enabled">
 		<% @pins.each do |pin| %>
 			<div class="box">
-	    		<% if pin.user == current_user %>
+
 		        	<%= image_tag pin.image.url  %>
-					<i>
+					<em>
 					<%= pin.user.email if pin.user %>
-				</i> -
+				    </em>-
 		        	<%= pin.description %>
-		        	<%= link_to 'Show', pin %> | 
-		        	<%= link_to 'Edit', edit_pin_path(pin) %> | 
-		        	<%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %>
-				<% end %>
+						<% if pin.user == current_user %>
+		        		<%= link_to 'Show', pin %> | 
+		        		<%= link_to 'Edit', edit_pin_path(pin) %> | 
+		        		<%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %>
+					<% end %>
 			</div>
 	    <% end %>
 </div>
