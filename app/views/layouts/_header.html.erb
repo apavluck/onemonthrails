@@ -18,11 +18,15 @@
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><%= link_to "Home", root_path %></li>
 			<!--<li><%= link_to "Pins", pins_path %></li>-->
-	        <li><%= link_to "Data summary", about_path %></li>
-			<li><%= link_to "Staff", staff_path %></li>
+	        <!--<li><%= link_to "Data summary", about_path %></li>-->
+			<!--<li><%= link_to "Staff", staff_path %></li>-->
 			<% if user_signed_in? %>
-			<li><%= link_to "Account settings", edit_user_registration_path %></li>
-			<li><%= link_to 'Create new Pin', new_pin_path %></li>
+			<li>
+				<%= link_to edit_user_registration_path do%>
+					Account settings
+				<% end %>
+			</li>
+			<li><%= link_to raw('<span class="glyphicon glyphicon-pushpin"></span> Create new Pin'), new_pin_path %></li>
 			<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 			<% else%>
 			  <li><%= link_to 'Log in',new_user_session_path %></li>
