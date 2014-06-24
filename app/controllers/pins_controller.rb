@@ -5,7 +5,7 @@ class PinsController < ApplicationController
                                      #only will allow you to list those that can
 
   def index
-    @pins = Pin.all.order("updated_at DESC")
+    @pins = Pin.all.order("updated_at DESC").paginate(:page => params[:page], :per_page => 8)
   end
   def show
   end
