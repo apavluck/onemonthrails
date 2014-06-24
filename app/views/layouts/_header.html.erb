@@ -27,9 +27,11 @@
 				<% end %>
 			</li>
 			<li><%= link_to raw('<span class="glyphicon glyphicon-pushpin"></span> Create new Pin'), new_pin_path %></li>
+			
 			<li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
 			<% else%>
-			  <li><%= link_to 'Log in',new_user_session_path %></li>
+			
+			 <li><%= link_to 'Log in',new_user_session_path %></li>
 			<% end %>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->

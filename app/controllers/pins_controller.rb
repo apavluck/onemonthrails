@@ -5,7 +5,7 @@ class PinsController < ApplicationController
                                      #only will allow you to list those that can
 
   def index
-    @pins = Pin.all
+    @pins = Pin.all.order("updated_at DESC")
   end
   def show
   end
